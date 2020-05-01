@@ -3,10 +3,12 @@ import CartItem from './CartItem'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
+
 class Cart extends Component {
     render() {
         let total = 0;
         this.props.cart.map(item => total += item.product.price * item.quantity)
+        const checkout = <Link Link to = "/checkout" className = "btn btn-sm btn-info float-right" > Check out</Link>
         const cart = this.props.cart.length > 0 ? (
             <div>
                 <div className="panel-body">
@@ -28,7 +30,8 @@ class Cart extends Component {
                             <h4 className="text-right">Total <strong>${total.toFixed(3)}</strong></h4>
                         </div>
                         <div className="col-md-auto">
-                            <button className="btn btn-sm btn-info float-right">Check out</button>
+                            {checkout}
+                            
                         </div>
                     </div>
 
@@ -42,6 +45,8 @@ class Cart extends Component {
                 </div>
                 </div>
             )
+
+        
 
 
         return (
@@ -62,7 +67,8 @@ class Cart extends Component {
                                                             <h4 className="text-right">Total <strong>${total.toFixed(3)}</strong></h4>
                                                         </div>
                                                         <div className="col-md-auto">
-                                                            <button className="btn btn-sm btn-info float-right">Check out</button>
+                                                            {checkout}
+                                                            
                                                         </div>
                                                     </div>
                                                     ) : null

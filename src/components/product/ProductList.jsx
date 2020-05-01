@@ -24,30 +24,18 @@ class ProductList extends Component {
     }
 
     loadProducts = () => {
-        // this.setState({
-        //     loading: true
-        // })
-        // axios.get(URL+"products").then(res=>{
-        //     const productss = res.data.data.filter(item => item.id <=12)
-        //     console.log(productss)
-        //     this.setState({
-        //         stateProducts: this.state.stateProducts.concat(productss),
-        //         loading: false
-        //     })
-
-        // })
+       
         this.setState({
             loading: true
         })
-        this.props.fetchProducts()
+        console.log("Before Fetch Products......", this.props.products);
+        this.props.fetchAllProducts() 
+        console.log("After Fetch Products.......", this.props.products);  
+        this.setState({
+            loading: false
+        })     
 
-        if(this.props.products.length > 0){
-            this.setState({
-                stateProducts: this.props.products,
-                loading: false
-            })
-          
-        } 
+       
        
 
 
@@ -70,7 +58,7 @@ class ProductList extends Component {
                         this.state.loading ?
                             <div>Loading products......</div> :
 
-                            (this.state.stateProducts.length > 0 && this.state.stateProducts.map(product =>
+                            (this.props.products.length > 0 && this.props.products.map(product =>
                                 <Product
                                     product={product}
                                     addToCart={this.addItemToCart}
@@ -97,10 +85,11 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        fetchAllProducts: () => dispatch(fetchProducts()),
         addToCart: (product) => {
             dispatch(addToCart(product))
         },
-        fetchProducts: fetchProducts(dispatch)
+       
 
     }
 }
