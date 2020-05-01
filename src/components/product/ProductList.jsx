@@ -11,35 +11,33 @@ class ProductList extends Component {
 
     constructor(props) {
         super(props)
-        this.state = {
-            stateProducts: [],
+        this.state = {           
             loading: false
         }
 
     }
 
     componentDidMount() {
+        this.setState({
+            loading: true
+        })
         this.loadProducts()
 
     }
 
-    loadProducts = () => {
-       
-        this.setState({
-            loading: true
-        })
-        console.log("Before Fetch Products......", this.props.products);
-        this.props.fetchAllProducts() 
-        console.log("After Fetch Products.......", this.props.products);  
-        this.setState({
-            loading: false
-        })     
+    loadProducts = () => {       
+              
+        this.props.fetchAllProducts()  
+        if(this.props.products > 0){
+            this.setState({
+                loading: false
+            })
 
-       
-       
-
-
+        }       
+        
     }
+
+   
 
     addItemToCart = (product) => {
         this.props.addToCart(product)
@@ -55,7 +53,7 @@ class ProductList extends Component {
                 <div className="row">
 
                     {
-                        this.state.loading ?
+                        this.props.products.length === 0 ?
                             <div>Loading products......</div> :
 
                             (this.props.products.length > 0 && this.props.products.map(product =>
@@ -83,15 +81,6 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//         fetchAllProducts: fetchAllProducts,
-//         addToCart: (product) => {
-//             dispatch(addToCart(product))
-//         },
-       
 
-//     }
-// }
 
 export default connect(mapStateToProps,{fetchAllProducts,addToCart} )(ProductList)

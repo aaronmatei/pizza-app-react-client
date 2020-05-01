@@ -1,14 +1,17 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 
 class Checkout extends Component {
   render() {
+    let total = 0;
+    this.props.cart.map(item => total += item.product.price * item.quantity)
     return (
       <div>
         <div className="container">
          
           <div className="row">            
             <div className="col-8 p-5 m-5 border border-dark rounded">
-              <h2 className="mb-3">Enter your billing address below</h2>
+              <h2 className="mb-3">Enter your billing address to pay:   <strong> {total === 0.000 ? null : `[$` + total.toFixed(2) + `]`}</strong> </h2>
               <hr/>
               <form className="needs-validation">
                 <div className="row">
@@ -293,4 +296,10 @@ class Checkout extends Component {
   }
 }
 
-export default Checkout;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart.cart
+  }
+}
+
+export default connect(mapStateToProps, {})(Checkout);

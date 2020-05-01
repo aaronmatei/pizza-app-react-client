@@ -61,13 +61,5 @@ class CartItem extends Component {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        addItemQuantity: (productId) => dispatch(addItemQuantity(productId)),
-        reduceItemQuantity: (productId) => dispatch(reduceItemQuantity(productId)),
-        removeFromCart: (productId) => dispatch(removeFromCart(productId))
 
-    }
-}
-
-export default connect(null, mapDispatchToProps)(CartItem)
+export default connect(null, { addItemQuantity, reduceItemQuantity, removeFromCart })(CartItem)

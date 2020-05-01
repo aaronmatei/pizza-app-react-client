@@ -8,6 +8,7 @@ class Cart extends Component {
     render() {
         let total = 0;
         this.props.cart.map(item => total += item.product.price * item.quantity)
+        const totalProice = <h4 className="text-right">Total <strong>${total.toFixed(2)}</strong></h4>
         const checkout = <Link Link to = "/checkout" className = "btn btn-sm btn-info float-right" > Check out</Link>
         const cart = this.props.cart.length > 0 ? (
             <div>
@@ -27,7 +28,7 @@ class Cart extends Component {
                 <div className="panel-footer">
                     <div className="row">
                         <div className="col-md-auto">
-                            <h4 className="text-right">Total <strong>${total.toFixed(3)}</strong></h4>
+                            {totalProice} 
                         </div>
                         <div className="col-md-auto">
                             {checkout}
@@ -64,7 +65,7 @@ class Cart extends Component {
                                                 this.props.cart.length > 0 ?
                                                     (<div className="row">
                                                         <div className="col-md-auto">
-                                                            <h4 className="text-right">Total <strong>${total.toFixed(3)}</strong></h4>
+                                                            {totalProice}
                                                         </div>
                                                         <div className="col-md-auto">
                                                             {checkout}
