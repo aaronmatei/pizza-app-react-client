@@ -9,7 +9,8 @@ const productReducer = (state = initState, action) => {
 
   switch (action.type) {
     case FETCH_PRODUCTS:      
-      let fetchedProducts = action.payload.products      
+      let fetchedProducts = action.payload.products 
+      console.log(fetchedProducts)     
       return { 
         ...state,
         products: this.state.products.concat(fetchedProducts) };
