@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Product from './Product'
 import { connect } from 'react-redux'
 import { addToCart } from '../store/actions/cartActions'
-import {fetchProducts} from '../store/actions/productActions'
+import {fetchAllProducts} from '../store/actions/productActions'
 
 
 
@@ -85,7 +85,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        fetchAllProducts: () => dispatch(fetchProducts()),
+        fetchAllProducts: () => fetchAllProducts,
         addToCart: (product) => {
             dispatch(addToCart(product))
         },
