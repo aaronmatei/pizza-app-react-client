@@ -4,9 +4,7 @@ import { connect } from 'react-redux'
 import { addToCart } from '../store/actions/cartActions'
 import {fetchProducts} from '../store/actions/productActions'
 
-import axios from 'axios'
 
-let URL = "https://pizzaappbackend001.herokuapp.com/api/";
 
 
 class ProductList extends Component {
