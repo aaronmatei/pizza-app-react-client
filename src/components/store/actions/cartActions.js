@@ -9,15 +9,32 @@ import {
 } from './action-types/cart-actions'
 
 //add cart action
-export const addToCart= (product)=>{
-    return{
-        type: ADD_TO_CART,
-        payload: {
-            product,
-            quantity: 1
-        }
-    }
+
+export const addToCart = (product) => dispatch => {
+  
+ dispatch({
+            type: ADD_TO_CART,
+            payload: {
+                product,
+                quantity: 1
+            }
+        });
+  
 }
+
+
+
+//  const addItemCart= (product)=>{
+//     return{
+//         type: ADD_TO_CART,
+//         payload: {
+//             product,
+//             quantity: 1
+//         }
+//     }
+// }
+
+
 //remove item action
 export const removeFromCart=(productId)=>{
     return{
