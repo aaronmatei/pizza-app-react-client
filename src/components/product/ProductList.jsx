@@ -22,6 +22,7 @@ class ProductList extends Component {
         this.setState({
             loading: true
         })
+        
         this.loadProducts()
 
     }
@@ -65,6 +66,7 @@ class ProductList extends Component {
                                     addToCart={this.addItemToCart}
                                     inCart={this.props.cart.length > 0 && this.props.cart.filter(e => e.product.id === product.id).length > 0}
                                     key={product.id}
+                                    
                                 />)
                             )
 

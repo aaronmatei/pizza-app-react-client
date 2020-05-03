@@ -5,8 +5,9 @@ const URL = 'https://pizzaappbackend001.herokuapp.com/api/';
 
 export const fetchAllProducts = () =>  (dispatch) => {    
      return axios.get(URL + 'products').then(res => {
-           const products =  res.data.data.filter((item) => item.id <= 16)
-            dispatch(fetchProducts(products))
+           const products =  res.data.data.filter((item) => item.pizza === "true")
+           const productsToDisplay = products.slice(0,17)
+            dispatch(fetchProducts(productsToDisplay))
       }).catch(e => {
           console.log(e)
       })
