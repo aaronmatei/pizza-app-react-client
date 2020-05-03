@@ -8,7 +8,8 @@ class Cart extends Component {
     constructor(props) {
         super(props)
         this.state = { 
-            cartItems: this.props.cart
+            cartItems: this.props.cart,
+            
         }
         
     }
@@ -16,9 +17,7 @@ class Cart extends Component {
     sortCartItems = (cartItems) => {
         return cartItems.sort((a,b)=>
             a.id > b.id ? 1: -1)
-    }
-
-    
+    }    
 
 
     render() {

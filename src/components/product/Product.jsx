@@ -15,6 +15,7 @@ class Product extends Component {
     }
     render() {
         const {product} = this.props
+        const {incart} = this.state
         return (
             <div className="col-md-3">
                 <figure className="card card-product">
@@ -27,11 +28,11 @@ class Product extends Component {
                     </figcaption>
                     <div className="bottom-wrap">
                         {
-                            this.state.inCart ? (
+                            incart ? (
                                 <span className="btn btn-success">Added to cart</span>
 
                             ) : (
-                                    <button className="btn btn-sm btn-primary float-right" onClick={this.addToCart}>Add to Cart</button>
+                                    <button className="btn btn-sm btn-primary float-right" onClick={!incart && this.addToCart}>Add to Cart</button>
 
                                 )
                         }
