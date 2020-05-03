@@ -15,18 +15,25 @@ const cartReducer= (state = initState,action)=>{
    switch(action.type){
        case ADD_TO_CART:
            let existing_item = cart.find(item => item.product.id === action.payload.productId)
+           let fresh_cart = cart.filter(item =>  item.product.id !== action.payload.productId)
            if(existing_item){
                existing_item.quantity +=1
+               fresh_cart.push(existing_item)
+               return {
+                   ...state,
+                   cart: fresh_cart
+               }
            }
            cart.push(action.payload)
            return {
                ...state,
                cart: cart
            }
-        case REMOVE_FROM_CART:        
+        case REMOVE_FROM_CART:
+            cart.filter(item => item.product.id !== action.payload.productId)           
            return {
                ...state,
-               cart: cart.filter(item => item.product.id !== action.payload.productId)
+               cart: cart
            }
        case ADD_QUANTITY:
            let itm = cart.find(item => item.product.id === action.payload.productId)
@@ -42,6 +49,7 @@ const cartReducer= (state = initState,action)=>{
             let itemm = cart.find(item=>item.product.id === action.payload.productId)
             let newCartt = cart.filter(item=>item.product.id !== action.payload.productId)
             if(itemm.quantity === 1){
+                
                 return {
                     ...state,
                     cart: newCartt

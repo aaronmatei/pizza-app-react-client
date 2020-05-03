@@ -5,17 +5,33 @@ import { Link } from 'react-router-dom';
 
 
 class Cart extends Component {
+    constructor(props) {
+        super(props)
+        this.state = { 
+            cartItems: this.props.cart
+        }
+        
+    }
+
+    sortCartItems = (cartItems) => {
+        return cartItems.sort((a,b)=>
+            a.id > b.id ? 1: -1)
+    }
+
+    
+
 
     render() {
         let total = 0;
-        this.props.cart.map(item => total += item.product.price * item.quantity)
+        this.sortCartItems(this.state.cartItems).map(item => total += item.product.price * item.quantity)
         const totalProice = <h4 className="text-right">Total <strong>${total.toFixed(2)}</strong></h4>
-        const checkout = <Link Link to = "/checkout" className = "btn btn-sm btn-info float-right" > Check out</Link>
+        const checkout = <Link to= "/checkout" className = "btn btn-sm btn-info float-right" > Check out</Link>
         const cart = this.props.cart.length > 0 ? (
             <div>
                 <div className="panel-body">
                     {
-                        this.props.cart.map(item => {
+                        this.sortCartItems(this.state.cartItems).map(item => {                          
+
                             return (
                                 <div key={item.product.id}>
                                     <CartItem item={item} />
