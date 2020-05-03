@@ -43,6 +43,8 @@ class ProductList extends Component {
         this.props.addToCart(product)
     }
 
+   
+
 
     render() {
 

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 class Cart extends Component {
+
     render() {
         let total = 0;
         this.props.cart.map(item => total += item.product.price * item.quantity)

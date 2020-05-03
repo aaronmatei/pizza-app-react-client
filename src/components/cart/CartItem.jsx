@@ -13,9 +13,15 @@ class CartItem extends Component {
 
     handleAddToCart = (e) => {       
         this.props.addItemQuantity(this.props.item.product.id)
+        this.setState({
+            quantity: this.state.quantity + 1
+        })
     }
     handleReduceFromCart = (e) => {
         this.props.reduceItemQuantity(this.props.item.product.id)
+        this.setState({
+            quantity: this.state.quantity - 1
+        })
     }
     handleRemoveFromCart = (e) => {
         this.props.removeFromCart(this.props.item.product.id)
