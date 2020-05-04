@@ -3,18 +3,28 @@ import React, { Component } from 'react'
 
 class Product extends Component {
     state = {
-        incart: this.props.inCart
+        inCart: this.props.inCart
     }
 
-    addToCart = () => {
-        this.props.addToCart(this.props.product)        
-        this.setState({
-            inCart: true
-        })
+    //updateCartItemQuantity
+
+    addOrUpdateCartItem = (e) => {
+        e.preventDefault();
+
+        if (!this.state.inCart) {            
+            this.props.addToCart(this.props.product)
+            this.setState({
+                inCart: true
+            })
+        }
+        else {            
+            this.props.incrementItemQuantity(this.props.product)
+
+        }
     }
     render() {
         const { product } = this.props
-        const { incart } = this.state
+        const { inCart } = this.state
         return (
             <div className="col-md-3">
                 <figure className="card card-product">
@@ -27,11 +37,11 @@ class Product extends Component {
                     </figcaption>
                     <div className="bottom-wrap">
                         {
-                            incart ? (
-                                <span className="btn btn-success">Added to cart</span>
+                            inCart ? (
+                                <span className="btn btn-success" onClick={this.addOrUpdateCartItem}>Added to cart</span>
 
                             ) : (
-                                    <button className="btn btn-sm btn-primary float-right" onClick={this.addToCart}>Add to Cart</button>
+                                    <button className="btn btn-sm btn-primary float-right" onClick={this.addOrUpdateCartItem}>Add to Cart</button>
 
                                 )
                         }

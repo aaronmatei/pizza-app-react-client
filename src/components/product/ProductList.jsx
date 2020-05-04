@@ -3,6 +3,7 @@ import Product from './Product'
 import { connect } from 'react-redux'
 import { addToCart } from '../store/actions/cartActions'
 import {fetchAllProducts} from '../store/actions/productActions'
+import {addItemQuantity} from '../store/actions/cartActions'
 
 
 
@@ -37,13 +38,16 @@ class ProductList extends Component {
 
         }       
         
-    }
+    }  
 
    
-
     addItemToCart = (product) => {
         this.props.addToCart(product)
     }
+    addCartItemQuantity = (product) => {
+        this.props.addItemQuantity(product.id);
+    }
+
 
    
 
@@ -64,6 +68,7 @@ class ProductList extends Component {
                                 <Product
                                     product={product}
                                     addToCart={this.addItemToCart}
+                                    incrementItemQuantity={this.addCartItemQuantity}
                                     inCart={this.props.cart.length > 0 && this.props.cart.filter(e => e.product.id === product.id).length > 0}
                                     key={product.id}
                                     
@@ -88,4 +93,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps,{fetchAllProducts,addToCart} )(ProductList)
+export default connect(mapStateToProps,{fetchAllProducts,addToCart, addItemQuantity} )(ProductList)

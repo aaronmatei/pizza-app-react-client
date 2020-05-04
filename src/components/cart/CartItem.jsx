@@ -25,10 +25,8 @@ class CartItem extends Component {
     }
     handleRemoveFromCart = (e) => {
         this.props.removeFromCart(this.props.item.product.id)
-        this.setState({
-            quantity: this.state.quantity === 0
-        })
-        
+
+
     }
 
 
@@ -57,7 +55,7 @@ class CartItem extends Component {
                         <button type="button" className="btn btn-link btn-xs" onClick={this.handleReduceFromCart}>
                             <span><i className="fas fa-minus"></i></span>
                         </button>
-                        <span>{this.state.quantity}</span>
+                        <span>{quantity}</span>
                         <button type="button" className="btn btn-link btn-xs" onClick={this.handleAddToCart}>
                             <span><i className="fas fa-plus"></i></span>
                         </button>
